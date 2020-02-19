@@ -6,7 +6,7 @@ def get_config():
 
     config = {}
 
-    with open('Vkbot//config.toml', 'r', encoding='utf-8') as config_file:
+    with open('VkBot/config.toml', 'r', encoding='utf-8') as config_file:
         for line in CONFIG_COMMAND:
             if line not in config:
                 for key, value in toml.load(config_file).items():
