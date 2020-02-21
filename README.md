@@ -118,7 +118,7 @@
 
   ```python
       def message_analysic(self, message):
-          if message == '/help':
+          if '/help' in message:
               return self.plugins[0].get_about()
   ```
 
