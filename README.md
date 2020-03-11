@@ -124,6 +124,8 @@
 
 **Плагин успешно установлен и готов к использованию**
 
+Более подробное описание создания плагинов можно увидеть [здесь](https://vk.com/@steinteam-sozdanie-vk-bota-s-pomoschu-vkbotfather?anchor=sozdanie-i-dobavlenie-plaginov)  
+
 ### Лицензия
 
 Данный репозиторий использует лицензию [MIT](https://choosealicense.com/licenses/mit/)  
