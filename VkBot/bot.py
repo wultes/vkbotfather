@@ -27,7 +27,7 @@ class MakeBot(SettingsBot):
     def give_response_user(self, event_text, event_user_id):
         print('| {2} :Бот получил сообщение "{0}" <- @{1}'.format(event_text, event_user_id, datetime.datetime.now()))
         response = self.message_analysic(event_text)
-        if '.jpg' in response:
+        if '.jpg' or '.png' in response:
             photo = self.photo_upload(response)
             self.send_image_user(photo, event_user_id)
         else:
@@ -78,6 +78,8 @@ class MakeBot(SettingsBot):
             random_id=random.randint(1, 10 ** 8)
         )
 
+        print('| {2} :Бот отправил изображение "{0}" в беседу id{1}'.format(image, chat_id, datetime.datetime.now()))
+
     #Проверка на получение сообщений
     def valid_event(self, event):
         return event.type == VkBotEventType.MESSAGE_NEW
@@ -94,10 +96,11 @@ class MakeBot(SettingsBot):
 
         return images
     
+    #Здесь меняем условия запуска плагина
     def message_analysic(self, message):
         if 'help' in message:
-            return self.plugins[0].get_about()
+            return self.plugins[0].get_about() #выводит информацию о возможностях бота
         if 'орел или решка' in message:
-            return self.plugins[2].get_heads_and_tails()
+            return self.plugins[2].get_heads_and_tails() #выводит рандомно "орел" или "решка"
         else:
-            return self.plugins[1].get_anything()
+            return self.plugins[1].get_anything() #выводит рандомные фразы
