@@ -48,7 +48,7 @@
 5. Для запуска бота введите команду:
 
    ```bash
-   python main.py
+   python start.py
    ```
 
     
