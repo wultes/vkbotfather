@@ -43,15 +43,8 @@
    pip install -r requirements.txt --upgrade
    ```
 
-4. Откройте файл ```config.toml``` любым текстовым редактором и укажите токен сообщества, id группы.
-
-5. Для запуска бота введите команду:
-
-   ```bash
-   python start.py
-   ```
-
     
+
 
 ### Получение токена сообщества
 
@@ -81,7 +74,19 @@
 
 
 
-### Добавление плагинов
+### Примеры бота и плагинов.
+
+Пример бота вы можете увидеть, перейдя в папку ```example``` или посмотрев на код ниже.
+
+```python
+from fatherbot.bot import MakeBot
+from plugins import * 
+
+bot = MakeBot(config="/configs/config.toml")
+bot.model.addPlugins([])
+
+bot.startBot() 
+```
 
 Для создания и добавления плагинов нужно сделать следующие шаги:
 
@@ -90,39 +95,37 @@
 - Создать в этом файле класс.
 
   ```python
-  class AboutBot:
+  class About:
   ```
 
 - Создать в этом классе функции.
 
   ```python
-  class AboutBot:
+  class About:
       
       @staticmethod
-      def get_about():
-          
-          return "About"
+      def get_about(msg):
+          if '/about' in msg:
+              return "About"
   ```
 
-  Название функции, которая будет возвращать значение боту, обязательно должно начинаться с ```get_название_функции``` и иметь ```@staticmethod```.
+  Название функции, которая будет возвращать значение боту, обязательно должно иметь ```@staticmethod```.
 
-- Открываем файл ```settings.py``` и добавляем новый плагин в список плагинов.
+- Добавить его в список плагинов с помощью функции ```addPlugin```
 
   ```python
-          self.plugins = (
-              about.AboutBot(), #0
-          )
+  from fatherbot.bot import MakeBot
+  from plugins import * 
+  
+  bot = MakeBot(config="/configs/config.toml")
+  bot.model.addPlugins([
+      about.About.get_about,
+  ])
+  
+  bot.startBot() 
   ```
 
-- После этого, переходим в файл ```bot.py``` и добавляем условие, при котором наша функция будет вызываться.
-
-  ```python
-      def message_analysic(self, message):
-          if '/help' in message:
-              return self.plugins[0].get_about()
-  ```
-
-**Плагин успешно установлен и готов к использованию**
+- Теперь ваш плагин установлен и готов к использованию.
 
 Более подробное описание создания плагинов можно увидеть [здесь](https://vk.com/@steinteam-sozdanie-vk-bota-s-pomoschu-vkbotfather?anchor=sozdanie-i-dobavlenie-plaginov)  
 
