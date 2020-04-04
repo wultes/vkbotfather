@@ -82,7 +82,7 @@
 from fatherbot.bot import MakeBot
 from plugins import * 
 
-bot = MakeBot(config="/configs/config.toml")
+bot = MakeBot(config="/configs/config.toml") #или bot = MakeBot(token="", group_id="")
 bot.model.addPlugins([])
 
 bot.startBot() 
