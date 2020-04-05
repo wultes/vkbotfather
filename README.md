@@ -37,7 +37,7 @@
    git clone https://github.com/wultes/vkbotfather
    ```
    
-   Также, вы можете использовать ```pip``
+   Также, вы можете использовать ```pip```
    
    ```bash
    pip install vkbotfather
