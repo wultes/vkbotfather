@@ -36,6 +36,12 @@
    ```bash
    git clone https://github.com/wultes/vkbotfather
    ```
+   
+   Также, вы можете использовать ```pip``
+   
+   ```bash
+   pip install vkbotfather
+   ```
 
 3. Откройте командную строку и введите следующую команду:
 
@@ -79,8 +85,7 @@
 Пример бота вы можете увидеть, перейдя в папку ```example``` или посмотрев на код ниже.
 
 ```python
-from fatherbot.bot import MakeBot
-from plugins import * 
+from vkbotfather.fatherbot.bot import MakeBot
 
 bot = MakeBot(config="/configs/config.toml") #или bot = MakeBot(token="", group_id="")
 bot.model.addPlugins([])
@@ -114,8 +119,8 @@ bot.startBot()
 - Добавить его в список плагинов с помощью функции ```addPlugins```
 
   ```python
-  from fatherbot.bot import MakeBot
-  from plugins import * 
+  from vkbotfather.fatherbot.bot import MakeBot
+  from plugins import about
   
   bot = MakeBot(config="/configs/config.toml")
   bot.model.addPlugins([
