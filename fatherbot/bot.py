@@ -1,15 +1,7 @@
-import random 
-import asyncio
-import datetime
-
-from vk_api.bot_longpoll import VkBotEventType, VkBotLongPoll
-
 from fatherbot.models.settings import SettingsBot
 from fatherbot.models.model import Model
 
 from utils.config_tool import get_config
-
-
 
 class MakeBot(SettingsBot):
     def __init__(self, token=None, group_id=None, config=None):      

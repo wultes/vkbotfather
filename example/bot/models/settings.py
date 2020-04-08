@@ -1,10 +1,8 @@
 import toml
-import vk_api
-from vk_api.bot_longpoll import VkBotEventType, VkBotLongPoll
-from vk_api import VkUpload
 
 from plugins import *
 from utils.config_tool import get_config
+from bot.models.vkapi import VKAPI
 
 class SettingsBot:
     """It contains all the bot settings."""
@@ -17,10 +15,7 @@ class SettingsBot:
         else:
             self.token = token
             self.group_id = group_id
-
-        self.session = vk_api.VkApi(token=self.token)
-        self.long_poll = VkBotLongPoll(self.session, self.group_id)
-        self.vk = self.session.get_api()
-        self.vk_upload = VkUpload(self.session)
+        
+        self.vk_api = VKAPI(token=self.token, group_id=self.group_id)
 
         self.plugins = []

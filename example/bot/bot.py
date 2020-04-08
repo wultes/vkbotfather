@@ -1,9 +1,3 @@
-import random 
-import asyncio
-import datetime
-
-from vk_api.bot_longpoll import VkBotEventType, VkBotLongPoll
-
 from bot.models.settings import SettingsBot
 from bot.models.model import Model
 
