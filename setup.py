@@ -1,3 +1,5 @@
+from setuptools import setup, find_packages
+
 
 setup(
     name='vkbotfather',
@@ -7,6 +9,6 @@ setup(
     license='MIT',
     author='Wultes (Kirill)',
     author_email='wultesu@gmail.com',
-    packages=['vkbotfather'],
-    pakage_data={'vkbotfather': ['fatherbot/*/*', 'utils/*']}
+    packages=['vkbotfather', 'vkbotfather.fatherbot', 'vkbotfather.fatherbot', 'vkbotfather.fatherbot.models', 'vkbotfather.utils'],
+    install_requires=['toml', 'Pillow']
 )
