@@ -1,7 +1,7 @@
-from fatherbot.models.settings import SettingsBot
-from fatherbot.models.model import Model
+from vkbotfather.fatherbot.models.settings import SettingsBot
+from vkbotfather.fatherbot.models.model import Model
 
-from utils.config_tool import get_config
+from vkbotfather.utils.config_tool import get_config
 
 class MakeBot(SettingsBot):
     def __init__(self, token=None, group_id=None, config=None):      

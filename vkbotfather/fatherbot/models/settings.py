@@ -1,8 +1,8 @@
 import toml
 
 from plugins import *
-from utils.config_tool import get_config
-from fatherbot.models.vkapi import VKAPI
+from vkbotfather.utils.config_tool import get_config
+from vkbotfather.fatherbot.models.vkapi import VKAPI
 
 class SettingsBot:
     """It contains all the bot settings."""

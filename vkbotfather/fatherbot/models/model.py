@@ -1,7 +1,7 @@
 import datetime
 import random
 
-from fatherbot.models.settings import SettingsBot
+from vkbotfather.fatherbot.models.settings import SettingsBot
 
 
 class Model(SettingsBot):
