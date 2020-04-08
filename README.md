@@ -2,9 +2,6 @@
 
 Данный проект позволяет облегчить создание ботов ВК.
 
-![https://img.shields.io/badge/Made%20with%20-Python-red](https://img.shields.io/badge/Made with -Python-red)![PyPI](https://img.shields.io/pypi/v/vkbotfather?color=blue)![PyPI - Downloads](https://img.shields.io/pypi/dd/vkbotfather?color=green)![GitHub](https://img.shields.io/github/license/wultes/vkbotfather)
-
-
 ### Установка
 
 1. Установите Python версии не ниже 3.6. При установке убедитесь, что поставили галочку в пункте **Add Python 3.8 to PATH**. Если у вас установлен Python, то проверьте его работу через командную строку.
