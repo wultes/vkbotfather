@@ -139,4 +139,4 @@ Copyright © 2020 [Wultes](https://github.com/wultes/).
 
 ### Связь
 
-Если у вас есть вопросы, то можете связаться со мной через [Telegram](t.me/wultes).
+Если у вас есть вопросы, то можете связаться со мной через [Telegram](https://t.me/wultes).
