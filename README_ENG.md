@@ -1,4 +1,4 @@
-[Русский](https://github.com/wultes/vkbotfather/blob/master/README.md)|[English](https://github.com/wultes/vkbotfather/blob/master/README_ENG.md)
+[Русский](https://github.com/wultes/vkbotfather/blob/master/README.md) | [English](https://github.com/wultes/vkbotfather/blob/master/README_ENG.md)
 
 # vkbotfather
 
