@@ -138,7 +138,7 @@ To create and add plugins, you need to take the following steps:
 
 ### 📃 License
 
-This module is licensed. [MIT](https://choosealicense.com/licenses/mit/).
+This module is licensed. [MIT](https://choosealicense.com/licenses/mit/).  
 Copyright © 2020 [Wultes](https://github.com/wultes/).
 
 ### ✉️ Communication
