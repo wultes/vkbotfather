@@ -131,6 +131,18 @@ To create and add plugins, you need to take the following steps:
       about.About.get_about,
   ])
   
+  bot.model.imageTypes([ #Determine which image format the bot can process.
+	   'jpg',
+	   'png'
+  ])
+
+   bot.model.documentTypes([ #Determine which document format the bot can process.
+	   'txt',
+	   'pdf',
+	   'doc'
+  ])
+   
+  
   bot.startBot() 
   ```
 
