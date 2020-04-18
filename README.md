@@ -133,6 +133,17 @@ bot.startBot()
       about.About.get_about,
   ])
   
+  bot.model.imageTypes([ #Определяем какой формат изображения бот может обрабатывать 
+	   'jpg',
+	   'png'
+  ])
+
+   bot.model.documentTypes([ #Определяем какой формат документов бот может обрабатывать
+	   'txt',
+	   'pdf',
+	   'doc'
+  ])
+   
   bot.startBot() 
   ```
 
