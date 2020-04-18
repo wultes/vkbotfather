@@ -9,7 +9,7 @@ class Model(SettingsBot):
     def startListen(self):
         """Listens to messages and sends their responses to analyzes"""
         try:
-            print('| Server is running\n| {0}'.format(datetime.datetime.now()))
+            print('| Server is running\n| For shutdown server press Ctrl + C\n| {0}'.format(datetime.datetime.now()))
             for event in self.vk_api.listenServer():
                 if self.vk_api.isNewMessage(event):
                     self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'])
@@ -24,9 +24,12 @@ class Model(SettingsBot):
 
         print('| {2} :Bot got a message "{0}" <- @{1}'.format(event_text, event_user_id, datetime.datetime.now())) 
         
+
         response = self.messageAnalysis(event_text)
-        if '.png' in response:
+        if len(response) > 3 and response[-3:] in self.image_types:
             self.sendImage(response, event_user_id)
+        elif len(response) > 3 and response[-3:] in self.document_types:
+            self.sendDocument(response, event_user_id)
         else:
             self.sendMessage(response, event_user_id)
 
@@ -44,11 +47,21 @@ class Model(SettingsBot):
         """Sends a image to the user."""
         self.vk_api.sendImage(
             peer_id=user_id, 
-            path = image,
-            random_id = random.randint(1, 10 ** 8)
+            path=image,
+            random_id=random.randint(1, 10 ** 8)
         )
 
         print('| {2} :Bot send a image "{0}" -> @{1}'.format(image, user_id, datetime.datetime.now()))
+
+    def sendDocument(self, document, user_id):
+        """Sends a document to the user"""
+        self.vk_api.sendDocument(
+            peer_id=user_id,
+            path=document,
+            random_id=random.randint(1, 10 ** 8)
+        )
+
+        print('| {2} :Bot send a document "{0}" -> @{1}'.format(document, user_id, datetime.datetime.now()))
     
     def messageAnalysis(self, message):
         """Analyzes messages and return response.
@@ -60,6 +73,8 @@ class Model(SettingsBot):
             response = plugin(message)
             if response != None:
                 return response
+        if response == None:
+            print('Yours plugins not have a return message/image/document')
 
     def addPlugin(self, plugin):
         """Add only one plugin in plugins list."""
@@ -71,3 +86,15 @@ class Model(SettingsBot):
 
         for plugin in plugins:
             self.addPlugin(plugin)
+
+    def imageTypes(self, types):
+        """Add new format images"""
+
+        for typ in types:
+            self.image_types.append(typ)
+
+    def documentTypes(self, types):
+        """Add new format document"""
+
+        for typ in types:
+            self.document_types.append(typ)

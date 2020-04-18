@@ -19,3 +19,7 @@ class SettingsBot:
         self.vk_api = VKAPI(token=self.token, group_id=self.group_id)
 
         self.plugins = []
+
+        self.image_types = []
+
+        self.document_types = []

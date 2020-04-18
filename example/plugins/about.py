@@ -15,3 +15,8 @@ class About:
     def get_icon(msg):
         if '/get image' in msg:
             return '/example/icon.png'
+
+    @staticmethod
+    def get_document(msg):
+        if '/get document' in msg:
+            return 'Здесь должен быть ваш документ'
