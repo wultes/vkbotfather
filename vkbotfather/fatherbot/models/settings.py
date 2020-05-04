@@ -1,6 +1,5 @@
 import toml
 
-from plugins import *
 from vkbotfather.utils.config_tool import get_config
 from vkbotfather.fatherbot.models.vkapi import VKAPI
 
