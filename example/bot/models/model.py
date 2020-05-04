@@ -26,12 +26,15 @@ class Model(SettingsBot):
         
 
         response = self.messageAnalysis(event_text)
-        if len(response) > 3 and response[-3:] in self.image_types:
-            self.sendImage(response, event_user_id)
-        elif len(response) > 3 and response[-3:] in self.document_types:
-            self.sendDocument(response, event_user_id)
+        if response is None:
+            pass
         else:
-            self.sendMessage(response, event_user_id)
+            if len(response) > 3 and response[-3:] in self.image_types:
+                self.sendImage(response, event_user_id)
+            if len(response) > 3 and response[-3:] in self.document_types:
+                self.sendDocument(response, event_user_id)
+            else:
+                self.sendMessage(response, event_user_id)
 
     def sendMessage(self, msg, user_id):
         """Sends a text message to the user."""
