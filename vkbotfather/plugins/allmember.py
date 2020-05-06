@@ -22,7 +22,7 @@ class GetAllMember:
 
 		return message
 
-	def get_allmember(self, msg):
+	def get_allmember(self, msg, *args):
 		if '!members' in msg:
 			message = self.get_message()
 			return message

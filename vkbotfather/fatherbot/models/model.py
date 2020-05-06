@@ -25,7 +25,7 @@ class Model(SettingsBot):
         print('| {2} :Bot got a message "{0}" <- @{1}'.format(event_text, event_user_id, datetime.datetime.now())) 
         
 
-        response = self.messageAnalysis(event_text)
+        response = self.messageAnalysis(event_text, event_user_id)
         if response is None:
             pass
         else: 
@@ -66,14 +66,14 @@ class Model(SettingsBot):
 
         print('| {2} :Bot send a document "{0}" -> @{1}'.format(document, user_id, datetime.datetime.now()))
     
-    def messageAnalysis(self, message):
+    def messageAnalysis(self, message, peer_id):
         """Analyzes messages and return response.
         
         If your response has line breaks, then use double quotes for this."""
 
         response = None
         for plugin in self.plugins:
-            response = plugin(message)
+            response = plugin(message, peer_id)
             if response != None:
                 return response
         if response == None:
