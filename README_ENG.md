@@ -97,56 +97,38 @@ bot.model.addPlugins([])
 bot.startBot() 
 ```
 
-To create and add plugins, you need to take the following steps:
+Example of plugins and creating it you can see in [Wiki](https://github.com/wultes/vkbotfather/wiki).
 
-- Create a file with the name of the plugin in the `` plugins`` folder. For example, `` about.py``.
+Add plugins using the function ```addPlugins```
 
-- Create a class in this file.
+```python
+from vkbotfather.fatherbot.bot import MakeBot
+from vkbotfather.plugins.allmember import GetAllMember
 
-  ```python
-  class About:
-  ```
+bot = MakeBot(config="/configs/config.toml")
 
-- Create functions in the class.
+getallmember = GetAllMember(token='', group_id='') #Init dinamic plugin
 
-  ```python
-  class About:
-      
-      @staticmethod
-      def get_about(msg):
-          if '/about' in msg:
-              return "About"
-  ```
+bot.model.addPlugins([
+    getallmember.get_allmember,
+])
 
-  Above the name of the function that will return the value to the bot, there must be `` @ staticmethod``.
+bot.model.imageTypes([ #Determine which image format the bot can process.
+   'jpg',
+   'png'
+])
 
-- Add it to the list of plugins using the function ```addPlugins```
+ bot.model.documentTypes([ #Determine which document format the bot can process.
+   'txt',
+   'pdf',
+   'doc'
+])
+ 
 
-  ```python
-  from vkbotfather.fatherbot.bot import MakeBot
-  from plugins import about
-  
-  bot = MakeBot(config="/configs/config.toml")
-  bot.model.addPlugins([
-      about.About.get_about,
-  ])
-  
-  bot.model.imageTypes([ #Determine which image format the bot can process.
-	   'jpg',
-	   'png'
-  ])
+bot.startBot() 
+```
 
-   bot.model.documentTypes([ #Determine which document format the bot can process.
-	   'txt',
-	   'pdf',
-	   'doc'
-  ])
-   
-  
-  bot.startBot() 
-  ```
-
-- Now your plugin is installed and ready to use. You can run the bot. 
+Now your plugin is installed and ready to use. You can run the bot. 
 
 ### 📃 License
 
