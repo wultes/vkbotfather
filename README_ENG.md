@@ -99,6 +99,8 @@ bot.startBot()
 
 Example of plugins and creating it you can see in [Wiki](https://github.com/wultes/vkbotfather/wiki).
 
+All pre-installed plugins are dynamic type. You can see the necessary parameters in the Wiki.
+
 Add plugins using the function ```addPlugins```
 
 ```python
