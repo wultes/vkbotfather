@@ -107,7 +107,7 @@ bot.startBot()
 
 ```python
 from vkbotfather.fatherbot.bot import MakeBot
-from vkbotfather.plugins.allmember import GetAllMember
+from vkbotfather.plugins.groups.allmember import GetAllMember
 
 bot = MakeBot(config="/configs/config.toml")
 
