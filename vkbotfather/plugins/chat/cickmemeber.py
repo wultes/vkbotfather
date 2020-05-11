@@ -9,7 +9,7 @@ class KickUser:
 	def get_json(self, chat_id, user_id):
 		vk_api = 'https://api.vk.com/method/messages.removeChatUser?chat_id={0}&user_id={1}&access_token={2}&v=5.103'.format(chat_id, user_id, self.token)
 		call = requests.get(vk_api).json()
-		print(call)
+		return call
 
 	def get_message(self, chat_id, user_id):
 		json = self.get_json(chat_id, user_id)
