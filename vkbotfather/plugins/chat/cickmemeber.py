@@ -14,7 +14,7 @@ class KickUser:
 	def get_message(self, chat_id, user_id):
 		json = self.get_json(chat_id, user_id)
 
-		message = 'За использованние запрещенных слов'
+		message = "За использованние запрещенных слов\n"
 
 		return message
 
