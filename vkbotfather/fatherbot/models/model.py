@@ -12,20 +12,26 @@ class Model(SettingsBot):
             print('| Server is running\n| For shutdown server press Ctrl + C\n| {0}'.format(datetime.datetime.now()))
             for event in self.vk_api.listenServer():
                 if self.vk_api.isNewMessage(event):
-                    self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'])
+                    if '200000000' in str(event['object']['message']['peer_id']):
+                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'chat_message', event['object']['message']['from_id'])
+                    else:
+                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'user_message')
 
         except KeyboardInterrupt:
             print('| Server shutdown\n| {0}'.format(datetime.datetime.now()))
 
-    def giveResponse(self, event_text, event_user_id):
+    def giveResponse(self, event_text, event_user_id, type_message, *args):
         """Takes a response and analyzes it. 
         This function processes requests from only one user. 
         You can change the response processing parameters."""
 
         print('| {2} :Bot got a message "{0}" <- @{1}'.format(event_text, event_user_id, datetime.datetime.now())) 
-        
 
-        response = self.messageAnalysis(event_text, event_user_id)
+        if type_message == 'chat_message':
+            event_from_id = args[0]
+            response = self.messageAnalysis(event_text, event_user_id, type_message, event_from_id)
+        else:
+            response = self.messageAnalysis(event_text, event_user_id, type_message)
         if response is None:
             pass
         else: 
@@ -66,14 +72,17 @@ class Model(SettingsBot):
 
         print('| {2} :Bot send a document "{0}" -> @{1}'.format(document, user_id, datetime.datetime.now()))
     
-    def messageAnalysis(self, message, peer_id):
+    def messageAnalysis(self, message, peer_id, type_message, *args):
         """Analyzes messages and return response.
         
         If your response has line breaks, then use double quotes for this."""
 
         response = None
         for plugin in self.plugins:
-            response = plugin(message, peer_id)
+            if type_message == 'chat_message':
+                response = plugin(message, peer_id, args[0])
+            else:
+                response = plugin(message, peer_id)
             if response != None:
                 return response
         if response == None:
