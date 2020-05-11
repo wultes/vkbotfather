@@ -97,7 +97,7 @@ bot.model.addPlugins([])
 bot.startBot() 
 ```
 
-Example of plugins and creating it you can see in [Wiki](https://github.com/wultes/vkbotfather/wiki).
+Example of plugins and creating it you can see in [Wiki](https://github.com/wultes/vkbotfather/wiki/Welcome-to-VkBotFather-Wiki).
 
 All pre-installed plugins are dynamic type. You can see the necessary parameters in the Wiki.
 
@@ -105,7 +105,7 @@ Add plugins using the function ```addPlugins```
 
 ```python
 from vkbotfather.fatherbot.bot import MakeBot
-from vkbotfather.plugins.allmember import GetAllMember
+from vkbotfather.plugins.groups.allmember import GetAllMember
 
 bot = MakeBot(config="/configs/config.toml")
 
