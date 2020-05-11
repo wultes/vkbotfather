@@ -30,7 +30,9 @@ class KickUser:
 					for i in str(chat_id):
 						if i != '0':
 							new_chat_id += i
-					message = self.get_message(new_chat_id[1:], user_id)
+		
+                message = self.get_message(new_chat_id[1:], user_id)
+                return message
 				else:
 					pass
 
