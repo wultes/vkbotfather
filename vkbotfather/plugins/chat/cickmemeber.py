@@ -9,12 +9,12 @@ class KickUser:
 	def get_json(self, chat_id, user_id):
 		vk_api = 'https://api.vk.com/method/messages.removeChatUser?chat_id={0}&user_id={1}&access_token={2}&v=5.103'.format(chat_id, user_id, self.token)
 		call = requests.get(vk_api).json()
-		print(call)
+		return call
 
 	def get_message(self, chat_id, user_id):
 		json = self.get_json(chat_id, user_id)
 
-		message = 'За использованние запрещенных слов'
+		message = "За использованние запрещенных слов\n"
 
 		return message
 
@@ -30,7 +30,9 @@ class KickUser:
 					for i in str(chat_id):
 						if i != '0':
 							new_chat_id += i
-					message = self.get_message(new_chat_id[1:], user_id)
+		
+                message = self.get_message(new_chat_id[1:], user_id)
+                return message
 				else:
 					pass
 
