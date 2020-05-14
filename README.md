@@ -99,7 +99,7 @@ bot.model.addPlugins([])
 bot.startBot() 
 ```
 
-Примеры плагинов и их создания, вы можете увидеть в [Wiki](https://github.com/wultes/vkbotfather/wiki/Welcome-to-VkBotFather-Wiki).  
+Примеры плагинов и их создания, вы можете увидеть в [Wiki](https://github.com/wultes/vkbotfather/wiki).  
 
 Все предустановленные плагины **имеют динамический тип**. Нужные параметры для их инициализации вы можете увидеть в Wiki.
 
