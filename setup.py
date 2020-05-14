@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name='vkbotfather',
     description='Father for creating VK Bots',
-    version='0.2.2',
+    version='0.2.3',
     url='https://github.com/wultes/vkbotfather',
     license='MIT',
     author='Wultes (Kirill)',
