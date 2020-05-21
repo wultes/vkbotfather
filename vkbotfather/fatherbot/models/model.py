@@ -12,9 +12,9 @@ class Model(SettingsBot):
             print('| Server is running\n| For shutdown server press Ctrl + C\n| {0}'.format(datetime.datetime.now()))
             for event in self.vk_api.listenServer():
                 if self.vk_api.isNewMessage(event):
-                    if '200000000' in str(event['object']['message']['peer_id']):
+                    if self.vk_api.isMessageFromChat(event):
                         self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'chat_message', event['object']['message']['from_id'])
-                    else:
+                    elif self.vk_api.isMessageFromUser(event):
                         self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'user_message')
 
         except KeyboardInterrupt:
