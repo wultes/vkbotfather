@@ -138,5 +138,24 @@ class VKAPI:
         """
         if event['type'] == 'message_new':
             return True
-        else:
-            return False
+        return False
+
+    def isMessageFromChat(self, event):
+        """Check from message
+
+        event - variable that save updates from listenServer()
+
+        """
+        if '200000000' in str(event['object']['message']['peer_id']):
+            return True
+        return False
+
+    def isMessageFromUser(self, event):
+        """Check from message
+
+        event - variable that save updates from listenServer()
+
+        """
+        if not '200000000' in str(event['object']['message']['peer_id']):
+            return True
+        return False
