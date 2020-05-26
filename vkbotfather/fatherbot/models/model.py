@@ -13,9 +13,9 @@ class Model(SettingsBot):
             for event in self.vk_api.listenServer():
                 if self.vk_api.isNewMessage(event):
                     if self.vk_api.isMessageFromChat(event):
-                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'chat_message', event['object']['message']['from_id'])
+                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'chat', event['object']['message']['from_id'])
                     elif self.vk_api.isMessageFromUser(event):
-                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'user_message')
+                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'user')
 
         except KeyboardInterrupt:
             print('| Server shutdown\n| {0}'.format(datetime.datetime.now()))
@@ -27,7 +27,7 @@ class Model(SettingsBot):
 
         print('| {2} :Bot got a message "{0}" <- @{1}'.format(event_text, event_user_id, datetime.datetime.now())) 
 
-        if type_message == 'chat_message':
+        if type_message == 'chat':
             event_from_id = args[0]
             response = self.messageAnalysis(event_text, event_user_id, type_message, event_from_id)
         else:
@@ -79,7 +79,7 @@ class Model(SettingsBot):
 
         response = None
         for plugin in self.plugins:
-            if type_message == 'chat_message':
+            if type_message == 'chat':
                 response = plugin(message, peer_id, args[0])
             else:
                 response = plugin(message, peer_id)
