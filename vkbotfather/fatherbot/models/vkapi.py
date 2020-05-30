@@ -159,3 +159,13 @@ class VKAPI:
         if not '200000000' in str(event['object']['message']['peer_id']):
             return True
         return False
+
+    def isMessageForward(self, event):
+        """
+        Check fwd messages
+
+        event - variable that save updates from listenServer()
+        """
+        if event['object']['message']['fwd_messages'] != []:
+            return True
+        return False
