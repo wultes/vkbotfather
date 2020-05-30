@@ -12,10 +12,15 @@ class Model(SettingsBot):
             print('| Server is running\n| For shutdown server press Ctrl + C\n| {0}'.format(datetime.datetime.now()))
             for event in self.vk_api.listenServer():
                 if self.vk_api.isNewMessage(event):
-                    if self.vk_api.isMessageFromChat(event):
+                    if self.vk_api.isMessageFromChat(event) and self.vk_api.isMessageForward(event):
+                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'chat', event['object']['message']['from_id'], event['object']['message']['fwd_messages'])
+                    elif self.vk_api.isMessageFromChat(event):
                         self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'chat', event['object']['message']['from_id'])
                     elif self.vk_api.isMessageFromUser(event):
                         self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'user')
+                    elif self.vk_api.isMessageFromUser(event) and self.vk_api.isMessageForward(event):
+                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'user', event['object']['message']['fwd_messages'])
+
 
         except KeyboardInterrupt:
             print('| Server shutdown\n| {0}'.format(datetime.datetime.now()))
@@ -28,9 +33,17 @@ class Model(SettingsBot):
         print('| {2} :Bot got a message "{0}" <- @{1}'.format(event_text, event_user_id, datetime.datetime.now())) 
 
         if type_message == 'chat':
-            event_from_id = args[0]
-            response = self.messageAnalysis(event_text, event_user_id, type_message, event_from_id)
+            if len(args) == 1:
+                event_from_id = args[0]
+                response = self.messageAnalysis(event_text, event_user_id, type_message, event_from_id)
+            elif len(args) == 2:
+                event_from_id = args[0]
+                fwd_messages = args[1]
+                response = self.messageAnalysis(event_text, event_user_id, type_message, event_from_id, fwd_messages)
         else:
+            if len(args) == 1:
+                fwd_messages = args[0]
+                response = self.messageAnalysis(event_text, event_user_id, type_message, fwd_messages)
             response = self.messageAnalysis(event_text, event_user_id, type_message)
         if response is None:
             pass
