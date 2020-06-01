@@ -13,47 +13,34 @@ class Model(SettingsBot):
             for event in self.vk_api.listenServer():
                 if self.vk_api.isNewMessage(event):
                     if self.vk_api.isMessageFromChat(event) and self.vk_api.isMessageForward(event):
-                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'chat', event['object']['message']['from_id'], event['object']['message']['fwd_messages'])
+                        self.giveResponse(event['object'], 'chat')
                     elif self.vk_api.isMessageFromChat(event):
-                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'chat', event['object']['message']['from_id'])
+                        self.giveResponse(event['object'], 'chat')
                     elif self.vk_api.isMessageFromUser(event):
-                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'user')
+                        self.giveResponse(event['object'], 'user')
                     elif self.vk_api.isMessageFromUser(event) and self.vk_api.isMessageForward(event):
-                        self.giveResponse(event['object']['message']['text'], event['object']['message']['peer_id'], 'user', event['object']['message']['fwd_messages'])
+                        self.giveResponse(event['object'], 'user')
 
 
         except KeyboardInterrupt:
             print('| Server shutdown\n| {0}'.format(datetime.datetime.now()))
 
-    def giveResponse(self, event_text, event_user_id, type_message, *args):
+    def giveResponse(self, obj, type_message):
         """Takes a response and analyzes it. 
         This function processes requests from only one user. 
         You can change the response processing parameters."""
 
-        print('| {2} :Bot got a message "{0}" <- @{1}'.format(event_text, event_user_id, datetime.datetime.now())) 
-
-        if type_message == 'chat':
-            if len(args) == 1:
-                event_from_id = args[0]
-                response = self.messageAnalysis(event_text, event_user_id, type_message, event_from_id)
-            elif len(args) == 2:
-                event_from_id = args[0]
-                fwd_messages = args[1]
-                response = self.messageAnalysis(event_text, event_user_id, type_message, event_from_id, fwd_messages)
-        else:
-            if len(args) == 1:
-                fwd_messages = args[0]
-                response = self.messageAnalysis(event_text, event_user_id, type_message, fwd_messages)
-            response = self.messageAnalysis(event_text, event_user_id, type_message)
+        print('| {2} :Bot got a message "{0}" <- @{1}'.format(obj['message']['text'], obj['message']['peer_id'], datetime.datetime.now()))
+        response = self.messageAnalysis(obj)
         if response is None:
             pass
         else: 
             if len(response) > 3 and response[-3:] in self.image_types:
-                self.sendImage(response, event_user_id)
+                self.sendImage(response, obj['message']['peer_id'])
             if len(response) > 3 and response[-3:] in self.document_types:
-                self.sendDocument(response, event_user_id)
+                self.sendDocument(response, obj['message']['peer_id'])
             else:
-                self.sendMessage(response, event_user_id)
+                self.sendMessage(response, obj['message']['peer_id'])
 
     def sendMessage(self, msg, user_id):
         """Sends a text message to the user."""
@@ -85,17 +72,14 @@ class Model(SettingsBot):
 
         print('| {2} :Bot send a document "{0}" -> @{1}'.format(document, user_id, datetime.datetime.now()))
     
-    def messageAnalysis(self, message, peer_id, type_message, *args):
+    def messageAnalysis(self, obj):
         """Analyzes messages and return response.
         
         If your response has line breaks, then use double quotes for this."""
 
         response = None
         for plugin in self.plugins:
-            if type_message == 'chat':
-                response = plugin(message, peer_id, args[0])
-            else:
-                response = plugin(message, peer_id)
+            response = plugin(obj['message']['text'], obj)
             if response != None:
                 return response
         if response == None:
