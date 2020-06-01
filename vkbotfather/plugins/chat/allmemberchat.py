@@ -23,7 +23,7 @@ class GetAllMemberChat:
 		return message
 
 	def get_allmemberchat(self, msg, *args):
-		peer_id = args[0]
+		peer_id = args[0]['message']['peer_id']
 
 		if self.command in msg:
 			if '200000000' in str(peer_id):

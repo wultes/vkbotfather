@@ -19,8 +19,8 @@ class KickUser:
 		return message
 
 	def get_kickuser(self, msg, *args):
-		chat_id = args[0]
-		user_id = args[1]
+		chat_id = args[0]['message']['peer_id']
+		user_id = args[0]['message']['from_id']
 
 		new_chat_id = ''
 
