@@ -7,7 +7,7 @@
 ![made-with-python](https://img.shields.io/badge/Made%20with%20-Python-blue)
 ![version](https://img.shields.io/pypi/v/vkbotfather?color=blue)
 ![license](https://img.shields.io/github/license/wultes/vkbotfather)
-![dowloands](https://img.shields.io/pypi/dw/vkbotfather)
+![dowloands](https://img.shields.io/pypi/dm/vkbotfather)
 
 ### 💿 Установка
 
