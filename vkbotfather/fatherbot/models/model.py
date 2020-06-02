@@ -12,13 +12,9 @@ class Model(SettingsBot):
             print('| Server is running\n| For shutdown server press Ctrl + C\n| {0}'.format(datetime.datetime.now()))
             for event in self.vk_api.listenServer():
                 if self.vk_api.isNewMessage(event):
-                    if self.vk_api.isMessageFromChat(event) and self.vk_api.isMessageForward(event):
-                        self.giveResponse(event['object'], 'chat')
-                    elif self.vk_api.isMessageFromChat(event):
+                    if self.vk_api.isMessageFromChat(event):
                         self.giveResponse(event['object'], 'chat')
                     elif self.vk_api.isMessageFromUser(event):
-                        self.giveResponse(event['object'], 'user')
-                    elif self.vk_api.isMessageFromUser(event) and self.vk_api.isMessageForward(event):
                         self.giveResponse(event['object'], 'user')
 
 
